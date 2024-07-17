@@ -29,6 +29,7 @@
 body {
   display: grid;
   grid-template-columns: [page-start] 20vw [contents-start] 1fr [contents-end] 20vw[page-end];
+  background: #fff;
 }
 
 .page-width {
