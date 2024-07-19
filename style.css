@@ -346,4 +346,17 @@ header > div.img-bg {
   h3 {
     text-align: center;
   }
+  footer > div.img-bg {
+    background: 
+    linear-gradient(
+        to top,
+        rgba(255, 255, 255, 1) 1%,
+        rgba(255, 255, 255, 0) 30%
+      ),
+      linear-gradient(to top,
+        rgba(255, 255, 255, 0) -4vw,
+        rgba(255, 255, 255, 1)
+      ),
+      url("media/header-bg.webp");
+  }
 }
