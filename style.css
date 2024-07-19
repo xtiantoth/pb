@@ -196,12 +196,15 @@ header > div.img-bg {
 }
 
 .font-size-big {
-  font-size: clamp(3rem, 13vw, 7rem);
+  font-size: clamp(3rem, 13vw, 5rem);
+  /* font-size: 13vw; */
+  /* font-size: 6rem; */
 }
 
-.header-letter-spacing {
-  letter-spacing: clamp(0rem, 1vw, 2rem);
-}
+/* .header-letter-spacing { */
+  /* letter-spacing: clamp(0rem, 1vw, 2rem); */
+  /* letter-spacing: clamp(0rem, 0.2vw, 2rem); */
+/* } */
 
 .header-size-small {
   font-size: clamp(1rem, 2vw, 3rem);
@@ -252,7 +255,7 @@ header > div.img-bg {
   font-weight: 700;
 }
 
-@media screen and (max-width: 1000px) {
+@media screen and (max-width: 1035px) {
   html {
     --logo-size: 190px;
     --footer-margin-bottom: 1.5rem;
@@ -284,12 +287,15 @@ header > div.img-bg {
     grid-template-areas:
       ". . ."
       ". logo ."
-      ". titles .";
+      "titles titles titles";
     justify-items: center;
   }
 
   .header-titles {
     text-align: center;
+  }
+  .header-titles > h1{
+    font-size: 4em;
   }
   .cards {
     grid-area: cards;
@@ -362,4 +368,17 @@ header > div.img-bg {
   .contattaci2{
     padding-right: 2rem;
   }
+.card {
+    border: green solid 7px;
+    background: rgba(150, 221, 150, 0.1);
+    border-radius: 0.8rem 4rem;
+    width: 50vw;
+    height: 70vw;
+    justify-self: center;
+    padding: 1.1rem;
+    text-transform: uppercase;
+    text-align: center;
+    font-size: 2.5vw;
+    font-weight: 700;
+}
 }
