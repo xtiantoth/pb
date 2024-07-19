@@ -1,3 +1,6 @@
+html {
+  --logo-size: clamp(250px, 13vw, 300px);
+}
 * {
   padding: 0;
   margin: 0;
@@ -28,127 +31,203 @@
 /* Body grid */
 body {
   display: grid;
-  grid-template-columns: [page-start] 20vw [contents-start] 1fr [contents-end] 20vw[page-end];
-  background: #fff;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: repeat(12, auto);
+  row-gap: 2rem;
+  grid-template-areas:
+    "header header header header header"
+    ". . welcome . ."
+    ". . welcome2 . ."
+    ". . deco1 . ."
+    ". . offriamo . ."
+    ". . intro . ."
+    ". . cards . ."
+    ". . deco2 . ."
+    ". . tiaspett . ."
+    ". . contattaci . ."
+    ". . contattaci2 . ."
+    "footer footer footer footer footer";
 }
 
-.page-width {
-  grid-column: page;
+header {
+  grid-area: header;
+  display: grid;
+  grid-template-columns: 0.5fr auto minmax(3vw, 3rem) auto 0.5fr;
+  grid-template-areas: ". logo . titles .";
+}
+header > *,
+footer > * {
+  z-index: 1;
+}
+footer {
+  grid-area: footer;
+  display: grid;
+  position: relative;
+  grid-template-columns: 2rem auto 2rem auto 5rem auto 1fr;
+  grid-template-areas: ". logo . contatti . orari .";
+  border-top: 1px solid green;
+  /* column-gap: 4rem; */
+}
+footer p {
+  line-height: 1.7;
+}
+footer::before {
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 1) 35%,
+    rgba(255, 255, 255, 0)
+  );
+}
+.orari {
+  padding-top: 1rem;
+  grid-area: orari;
+}
+.maps {
+  display: block;
+  margin-top: 0.8rem;
+  width: 50px;
+  position: relative;
+  grid-column: 2/3;
+  grid-row: 2/3;
+}
+.maps > img {
+  width: 100%;
+}
+
+.signature {
+  text-align: right;
+  color: green;
+  font-size: 2.3rem;
+  padding-bottom: 3rem;
+}
+.contatti {
+  padding-top: 1rem;
+  grid-area: contatti;
+}
+.benvenuto {
+  grid-area: welcome;
+}
+.benvenuto2 {
+  grid-area: welcome2;
+}
+.deco1 {
+  grid-area: deco1;
+}
+.deco2 {
+  grid-area: deco2;
+}
+.offriamo {
+  grid-area: offriamo;
+}
+.intro {
+  grid-area: intro;
+}
+
+.cards {
+  display: grid;
+  grid-area: cards;
+  grid-template-columns: 1fr auto auto auto 1fr;
+  grid-template-areas: ". card1 card2 card3 .";
+  column-gap: clamp(0.5rem, 20vw, 8rem);
+}
+.tiaspett {
+  grid-area: tiaspett;
+}
+.contattaci {
+  grid-area: contattaci;
+}
+.contattaci2 {
+  grid-area: contattaci2;
+}
+
+.card1 {
+  grid-area: card1;
+}
+.card2 {
+  grid-area: card2;
+}
+.card3 {
+  grid-area: card3;
 }
 
 header,
 footer {
   position: relative;
-  width: 100%;
   overflow: hidden;
 }
 
-header > img.header-img-bg,
-footer > img.header-img-bg {
-  width: 100%;
-  position: absolute;
-}
-
-header::before,
-footer::before {
-  content: "";
+.img-bg {
+  height: clamp(200px, 13vw, 300px);
   position: absolute;
   top: 0;
+  left: 0;
   bottom: 0;
   right: 0;
-  left: 0;
+}
+footer > div.img-bg {
   background: linear-gradient(
-    to top,
-    rgba(255, 255, 255, 1) 65%,
-    rgba(255, 255, 255, 0)
-  );
-  pointer-events: none;
-  z-index: 1;
+      to top,
+      rgba(255, 255, 255, 0) -4vw,
+      rgba(255, 255, 255, 1)
+    ),
+    url("media/header-bg.webp");
+}
+header > div.img-bg {
+  background: linear-gradient(
+      to bottom,
+      rgba(255, 255, 255, 0) -2vw,
+      rgba(255, 255, 255, 1)
+    ),
+    url("media/header-bg.webp");
 }
 
-.header-footer-contents {
-  display: grid;
-  position: relative;
-  grid-template-columns:
-    [header-start] minmax(
-      3rem,
-      5rem
-    ) [contents-start] auto [logo-end] auto [main-titles-end] 1fr [contents-end] minmax(
-      3rem,
-      5rem
-    )
-    [header-end];
-  z-index: 1;
-  width: 100%;
-}
-.border-top {
-  border-top: 1px solid green;
-}
 .border-bottom {
   border-bottom: 1px solid green;
 }
 
-.header-img-logo {
-  grid-column: contents-start / logo-end;
+.logo {
+  width: var(--logo-size);
+  grid-area: logo;
 }
 
-.main-titles {
-  grid-column: logo-end / main-titles-end;
-  padding: 2rem 0 0 0;
-}
-
-header > div > h2::after {
-  content: "";
-  display: block;
-  border-bottom: 1px solid #000;
-  grid-column: title-start / title-end;
-}
-
-header > div > h3 {
-  margin-top: 0.5rem;
-  letter-spacing: 0.7rem;
+.header-titles {
+  grid-area: titles;
+  padding: 2rem 0 1rem 0;
 }
 
 .font-size-big {
-  font-size: clamp(3rem, 5rem, 7rem);
+  font-size: clamp(3rem, 13vw, 7rem);
 }
 
 .header-letter-spacing {
-  letter-spacing: 0.5rem;
+  letter-spacing: clamp(0rem, 1vw, 2rem);
 }
 
 .header-size-small {
-  font-size: 1.5rem;
+  font-size: clamp(1rem, 2vw, 3rem);
 }
 
 .center {
   text-align: center;
 }
 
-.content {
-  grid-column: contents;
-  position: relative;
-}
-
 .leaf {
   box-sizing: content-box;
   transform: rotate(48deg) scaleX(-1);
   width: 1.7rem;
-  margin: 2rem 0;
   background-color: white;
-  padding: 0.7rem;
+  padding: 1rem;
 }
 
 .leaf-container {
   text-align: center;
   position: relative;
-  width: 100%;
 }
 
 .leaf-container::after {
   content: "";
   left: 0;
-  bottom: 4.6rem;
+  bottom: 2.6rem;
   position: absolute;
   border-bottom: 1px solid rgb(156, 156, 156);
   width: 100%;
@@ -157,13 +236,6 @@ header > div > h3 {
 
 .underline {
   text-decoration: underline;
-}
-
-.cards {
-  display: grid;
-  grid-template-columns: repeat(1fr, 3);
-  margin-top: 2.5rem;
-  column-gap: min(2rem);
 }
 
 .card {
@@ -180,61 +252,98 @@ header > div > h3 {
   font-weight: 700;
 }
 
-.card-1 {
-  grid-column: 1 / 2;
-}
+@media screen and (max-width: 1000px) {
+  html {
+    --logo-size: 190px;
+    --footer-margin-bottom: 1.5rem;
+  }
+  body {
+    grid-template-areas:
+      "header header header header header"
+      ". welcome welcome welcome ."
+      ". welcome2 welcome2 welcome2 ."
+      ". deco1 deco1 deco1 ."
+      ". offriamo offriamo offriamo ."
+      ". intro intro intro ."
+      ". cards cards cards ."
+      ". deco2 deco2 deco2 ."
+      ". tiaspett tiaspett tiaspett ."
+      ". contattaci contattaci contattaci ."
+      ". contattaci2 contattaci2 contattaci2 ."
+      "footer footer footer footer footer";
+    grid-template-rows: repeat(14, auto);
+    grid-template-columns: 1fr auto auto auto 1fr;
+    row-gap: 1rem;
+  }
+  .offriamo {
+    text-align: center;
+  }
+  header {
+    grid-template-columns: 0.25fr 1fr 0.25fr;
+    grid-template-rows: 1fr auto auto;
+    grid-template-areas:
+      ". . ."
+      ". logo ."
+      ". titles .";
+    justify-items: center;
+  }
 
-.card-2 {
-  grid-column: 2 / 3;
-}
-
-.card-3 {
-  grid-column: 3 / 4;
-}
-
-.mt-2 {
-  margin-top: 2rem;
-}
-
-.footer-contents {
-  grid-column: logo-end / contents-end;
-  display: grid;
-  grid-template-columns: [left-edge]2rem [padding-left] auto [first-content-end] auto [second-content-end];
-}
-
-.footer-contents > div {
-  line-height: 1.5;
-}
-
-.contatti {
-  padding-top: 1rem;
-  grid-column: padding-left / first-content-end;
-}
-
-.orari {
-  padding-top: 1rem;
-  grid-column: first-content-end / second-content-end;
-}
-
-footer::before {
-  background: linear-gradient(
-    to bottom,
-    rgba(255, 255, 255, 1) 35%,
-    rgba(255, 255, 255, 0)
-  );
-}
-.maps {
-  color: white;
-  background-color: green;
-  padding: 0.3rem 1.2rem;
-  border-radius: 1rem;
-  font-weight: bold;
-  text-decoration: none;
-  position: relative;
-  right: 1rem;
-}
-.signature {
-  text-align: right;
-  color: green;
-  font-size: 2.3rem;
+  .header-titles {
+    text-align: center;
+  }
+  .cards {
+    grid-area: cards;
+    grid-template-columns: 1fr auto 1fr;
+    grid-template-rows: auto auto auto;
+    grid-template-areas:
+      ". card1 ."
+      ". card2 ."
+      ". card3 .";
+    justify-items: center;
+    row-gap: 2rem;
+    padding-top: 1rem;
+  }
+  footer {
+    grid-area: footer;
+    display: grid;
+    position: relative;
+    grid-template-columns: 2rem auto 2rem;
+    grid-template-areas:
+      ". logo ."
+      ". contatti ."
+      ". orari .";
+    border-top: 1px solid green;
+    /* column-gap: 4rem; */
+    justify-items: center;
+  }
+  .contatti > * {
+    text-align: center;
+    margin-bottom: 0.8rem;
+  }
+  .contatti > :first-child {
+    margin-bottom: var(--footer-margin-bottom);
+  }
+  .contatti > :last-child {
+    margin-top: 1rem;
+  }
+  .orari > * {
+    text-align: center;
+    margin-bottom: 0.8rem;
+  }
+  .orari > :first-child {
+    margin-bottom: var(--footer-margin-bottom);
+  }
+  .dovesiamo {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    grid-template-rows: auto auto;
+    justify-items: center;
+  }
+  footer p {
+    line-height: 1;
+  }
+  p,
+  h3 {
+    text-align: center;
+  }
 }
