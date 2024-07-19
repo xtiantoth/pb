@@ -50,10 +50,10 @@ body {
 }
 
 header {
-  grid-area: header;
-  display: grid;
-  grid-template-columns: 0.5fr auto minmax(3vw, 3rem) auto 0.5fr;
-  grid-template-areas: ". logo . titles .";
+    grid-area: header;
+    display: grid;
+    grid-template-columns: 0.5fr auto 0 auto 0.5fr;
+    grid-template-areas: ". logo . titles .";
 }
 header > *,
 footer > * {
@@ -358,5 +358,8 @@ header > div.img-bg {
         rgba(255, 255, 255, 1)
       ),
       url("media/header-bg.webp");
+  }
+  .contattaci2{
+    padding-right: 2rem;
   }
 }
